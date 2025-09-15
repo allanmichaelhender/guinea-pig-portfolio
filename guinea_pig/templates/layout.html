@@ -14,19 +14,19 @@
 </head>
 <body>
     <nav>
-        <a href="/" title = "Home">🏠</a> | 
-        <a href="/about" title = "About">😀</a> | 
-        <a href="{% url 'posts:list' %}" title = "Posts List">📰</a> |
+        <a href="/" title = "Home">Home</a> | 
+        <a href="/about" title = "About">About</a> |
+        <a href="/" title = "Posts List">Portfolio Simulator</a> |
 
         {% if user.is_authenticated %}
-            <a href="{% url 'posts:new-post' %}" title = "New Post">🆕</a> |
+            <a href="/" title = "New Post">🆕</a> |
             <form class="logout" action="{% url 'users:logout' %}" method = "post">
                 {% csrf_token %}
                 <button class="logout-button" title="User Logout">👋</button> 
             </form>
         {% else %}
-                <a href="{% url 'users:register' %}" title = "New User">🚀</a> |
-                <a href="{% url 'users:login' %}" title = "User Login">🔏</a> 
+                <a href="{% url 'users:register' %}" title = "New User">Create Account</a> |
+                <a href="{% url 'users:login' %}" title = "User Login">Login</a> 
         {% endif %}           
     </nav>
     <main>
