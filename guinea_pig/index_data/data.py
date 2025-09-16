@@ -16,10 +16,12 @@ def create_url(symbol,datefrom,dateto,apikey):
     
 FTSE_url = create_url('^FTSE',datefrom,dateto,apikey)
 SNP500_url = create_url('^GSPC',datefrom,dateto,apikey)
+NIKKEI225_url = create_url('^N225',datefrom,dateto,apikey)
 
 
 FTSE_data_raw = get_jsonparsed_data(FTSE_url)
 SNP500_data_raw = get_jsonparsed_data(SNP500_url)
+NIKKEI225_data_raw = get_jsonparsed_data(NIKKEI225_url)
 
 def create_list_of_data(data):
     data_tuples = []
@@ -30,4 +32,5 @@ def create_list_of_data(data):
 
 FTSE_data = create_list_of_data(FTSE_data_raw)
 SNP500_data = create_list_of_data(SNP500_data_raw)
+NIKKEI225_data = create_list_of_data(NIKKEI225_data_raw)
 

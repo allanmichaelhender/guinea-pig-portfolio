@@ -1,6 +1,6 @@
 import psycopg2
 from config import load_config
-from data import FTSE_data, SNP500_data
+from data import FTSE_data, SNP500_data, NIKKEI225_data
 
 
 def insert_data(data,index):
@@ -21,4 +21,5 @@ def insert_data(data,index):
 if __name__ == '__main__':
     insert_data(FTSE_data,'FTSE')
     insert_data(SNP500_data,'SNP500')
+    insert_data(NIKKEI225_data,'NIKKEI225')
 

@@ -27,6 +27,18 @@ def create_tables():
             change NUMERIC(20,2) NOT NULL,
             changePercent NUMERIC(10,8)
         )
+        """,
+        """
+        CREATE TABLE NIKKEI225_data (
+            date DATE PRIMARY KEY NOT NULL,
+            open NUMERIC(20,2) NOT NULL,
+            high NUMERIC(20,2) NOT NULL,
+            low NUMERIC(20,2) NOT NULL,
+            close NUMERIC(20,2) NOT NULL,
+            volume BIGINT NOT NULL,
+            change NUMERIC(20,2) NOT NULL,
+            changePercent NUMERIC(10,8)
+        )
         """
 )
     try:
