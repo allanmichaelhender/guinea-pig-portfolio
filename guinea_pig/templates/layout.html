@@ -16,14 +16,14 @@
     <nav>
         <a href="/" title = "Home">Home</a> | 
         <a href="/about" title = "About">About</a> |
-        <a href="/portfolio_tester" title = "Posts List">Portfolio Simulator</a> |
-        <a href="/portfolio_tester/form" title = "Posts List">Portfolio Form</a> |
+        <a href="/portfolio_tester/form" title = "Posts List">Portfolio Creator</a> |
+        <a title = "My Portfolios" href="{% url 'portfolio_tester:my_portfolios' %}">My Porfolios</a> |
+
 
         {% if user.is_authenticated %}
-            <a href="/" title = "New Post">🆕</a> |
             <form class="logout" action="{% url 'users:logout' %}" method = "post">
                 {% csrf_token %}
-                <button class="logout-button" title="User Logout">👋</button> 
+                <button class="logout-button" title="User Logout">Logout</button> 
             </form>
         {% else %}
                 <a href="{% url 'users:register' %}" title = "New User">Create Account</a> |

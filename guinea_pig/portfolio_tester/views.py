@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-
-from .models import FtseData, Snp500Data, Nikkei225Data
+from django.contrib.auth import get_user_model
+from .models import FtseData, Snp500Data, Nikkei225Data, Portfolios
 from .investing_funcitons import invest_daily
 import datetime
 from .forms import PortfolioForm
@@ -33,12 +33,21 @@ def portfolio_creator(request):
 
 def tester(request):
     form = PortfolioForm(request.POST)
-    print('yes')
-
-    form['total_amount_invested'] = 0
-    form['final_amount'] = 0
-    form['change_percentage'] = 0
-    print('yes')
     if form.is_valid():
-        form.save()
+        print("here")
+        PorfolioObject = form.save(commit=False)
+        if request.user.is_authenticated:
+            PorfolioObject.user = request.user
+        else: 
+            User = get_user_model()
+            PorfolioObject.user = User.objects.get(pk=2)
+        PorfolioObject.save()
         return render(request, 'portfolio_tester/portfolio_tester_home.html')
+    
+def my_portfolios(request):
+    if request.user.is_authenticated:
+        portfolios = Portfolios.objects.filter(user=request.user).order_by('id')
+    else: 
+        User = get_user_model()
+        portfolios = Portfolios.objects.filter(user=User.objects.get(pk=2)).order_by('id')
+    return render(request, 'portfolio_tester/my_portfolios.html', {'portfolios': portfolios})

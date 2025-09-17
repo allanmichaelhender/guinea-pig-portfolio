@@ -6,8 +6,8 @@ frequency_choices = (('daily','Daily'), ('monthly', 'Monthly'))
 class PortfolioForm(forms.ModelForm):
     class Meta:
         model = Portfolios
-        #exclude = ["final_amount","submission_date","final_amount","change_percentage"]
-        fields = "__all__"
+        exclude = ["final_amount", "change_percentage", "total_amount_invested", "user"]
+        #fields = "__all__"
         
         
         widgets = {

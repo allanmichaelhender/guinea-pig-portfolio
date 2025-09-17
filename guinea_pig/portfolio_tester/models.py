@@ -6,6 +6,8 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
+from django.contrib.auth.models import User
+
 
 
 class FtseData(models.Model):
@@ -56,15 +58,17 @@ class Portfolios(models.Model):
     frequency_choices = [('daily', 'Daily'), ('monthly', 'Monthly'),]
 
     investment_frequency = models.CharField(max_length=10, choices=frequency_choices,default='daily',blank=False)
-    investment_amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
+    investment_amount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
     start_date = models.DateField()
     end_date = models.DateField()
     FTSE_weight = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     SNP500_weight = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     NIKKEI225_weight = models.DecimalField(max_digits=3, decimal_places=2, default=0.0)
     submission_date  = models.DateTimeField(auto_now_add = True)
-    #total_amount_invested = models.DecimalField(max_digits=30, decimal_places=2, default=0)
-    #final_amount = models.DecimalField(max_digits=30, decimal_places=2, default=0)
-    #change_percentage = models.DecimalField(max_digits=8, decimal_places=4, default=0)
+    total_amount_invested = models.DecimalField(max_digits=30, decimal_places=2, default=0)
+    final_amount = models.DecimalField(max_digits=20, decimal_places=2, default=0)
+    change_percentage = models.DecimalField(max_digits=8, decimal_places=4, default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
 
     

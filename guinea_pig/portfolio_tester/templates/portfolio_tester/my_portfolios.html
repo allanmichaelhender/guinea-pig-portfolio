@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+<section>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Submission Date</th>
+                <th>Investment Frequency</th>
+                <th>Amount Per Investment</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>FTSE Weight</th>
+                <th>S&P 500 Weight</th>
+                <th>NIKKEI 225 Weight</th>
+                <th>Total Invested</th>
+                <th>Final Amount</th>
+                <th>Change (%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for portfolio in portfolios %}
+            <tr>
+                <td>{{ portfolio.id }}</td>
+                <td>{{ portfolio.submission_date }}</td>
+                <td>{{ portfolio.get_investment_frequency_display }}</td>
+                <td>£{{ portfolio.investment_amount }}</td>
+                <td>{{ portfolio.start_date }}</td>
+                <td>{{ portfolio.end_date }}</td>
+                <td>{{ portfolio.FTSE_weight }}</td>
+                <td>{{ portfolio.SNP500_weight }}</td>
+                <td>{{ portfolio.NIKKEI225_weight }}</td>
+                <td>£{{ portfolio.total_amount_invested }}</td>
+                <td>£{{ portfolio.final_amount }}</td>
+                <td>{{ portfolio.change_percentage }}</td>
+            </tr>
+            {% empty %}
+            {% endfor %}
+</section>
+{% endblock %}
