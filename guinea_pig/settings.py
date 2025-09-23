@@ -68,6 +68,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'guinea_pig.urls'
@@ -130,16 +132,26 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
+
+# Tell Django where the collected static files will be placed
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+
+# Tell WhiteNoise to use its storage backend for compression and caching
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+# Optional: If you have static files outside of an app's static directory,
+# specify their location here.
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+
 MEDIA_URL = 'media/'
 
-STATIC_ROOT = BASE_DIR / 'assets'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
 
 
 
