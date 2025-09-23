@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
     background-color: rgb(0, 4, 36);
     color: whitesmoke;
+    font-size: 2rem;
 }
 
 nav {
@@ -34,7 +35,7 @@ h2 {
 }
 
 p {
-    font-size: 1rem;
+    font-size: 2rem;
 }
 
 a, .logout-button {
