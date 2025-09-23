@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block  content%}
- <h1>Register a New User</h1>
+ <h2>Register a New User</h2>
  <form class="form-with-validation" action="{% url 'users:register' %}" method="post">
     {{ form }}
     {% csrf_token %}
