@@ -33,7 +33,7 @@ class PortfolioForm(forms.ModelForm):
             start_date = cleaned_data.get("start_date")
             end_date = cleaned_data.get("end_date")
 
-            min_date = datetime.date(2020, 1, 1)
+            min_date = datetime.date(2015, 1, 1)
             max_date = datetime.date(2025, 9, 1)
 
             # First, check if both dates are present in the form data

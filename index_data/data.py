@@ -6,7 +6,7 @@ def get_jsonparsed_data(url):
     data = response.read().decode("utf-8")
     return json.loads(data)
 
-datefrom = "2020-01-01"
+datefrom = "2015-01-01"
 dateto = "2025-09-01"
 
 import os
