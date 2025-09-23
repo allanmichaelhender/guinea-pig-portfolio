@@ -18,7 +18,7 @@
 
     <div>
         {{ form.investment_amount.errors}}
-        <p>Investment Amount</p>
+        <p>Investment Amount (per increment) </p>
         £{{ form.investment_amount}}
     </div>
 
@@ -144,11 +144,11 @@
 
             // Check if dates are within the valid range
             if (startDateInput.value && (startDate < minDate || startDate > maxDate)) {
-                startDateErrorSpan.textContent = "Date must be between 2020-01-01 and 2025-09-01.";
+                startDateErrorSpan.textContent = "Date must be between 2015-01-01 and 2025-09-01.";
                 isValid = false;
             }
             if (endDateInput.value && (endDate < minDate || endDate > maxDate)) {
-                endDateErrorSpan.textContent = "Date must be between 2020-01-01 and 2025-09-01.";
+                endDateErrorSpan.textContent = "Date must be between 2015-01-01 and 2025-09-01.";
                 isValid = false;
             }
 
