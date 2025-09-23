@@ -31,16 +31,18 @@
     {% endif %}
 
 
-    <div>
-        {{ form.start_date.errors}}
+       <div>
+        {{ form.start_date.errors }}
         <p>Start Date</p>
-        {{ form.start_date}}
+        {{ form.start_date }}
+        <span id="start-date-error" class="error-message"></span>
     </div>
-    
+
     <div>
-        {{ form.end_date.errors}}
+        {{ form.end_date.errors }}
         <p>End Date</p>
-        {{ form.end_date}}
+        {{ form.end_date }}
+        <span id="end-date-error" class="error-message"></span>
     </div>
 
     <br>
@@ -112,6 +114,57 @@
 
         // Run validation on page load in case of pre-filled values
         validateWeights();
+    });
+
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+        const startDateInput = document.getElementById('id_start_date');
+        const endDateInput = document.getElementById('id_end_date');
+        const startDateErrorSpan = document.getElementById('start-date-error');
+        const endDateErrorSpan = document.getElementById('end-date-error');
+        const form = document.getElementById('portfolio-form');
+
+        function validateDates() {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+            const minDate = new Date('2020-01-01');
+            const maxDate = new Date('2025-09-01');
+
+            let isValid = true;
+
+            // Clear previous errors
+            startDateErrorSpan.textContent = '';
+            endDateErrorSpan.textContent = '';
+
+            // Check if start date is after end date
+            if (startDateInput.value && endDateInput.value && startDate > endDate) {
+                startDateErrorSpan.textContent = "Start date cannot be after end date.";
+                isValid = false;
+            }
+
+            // Check if dates are within the valid range
+            if (startDateInput.value && (startDate < minDate || startDate > maxDate)) {
+                startDateErrorSpan.textContent = "Date must be between 2020-01-01 and 2025-09-01.";
+                isValid = false;
+            }
+            if (endDateInput.value && (endDate < minDate || endDate > maxDate)) {
+                endDateErrorSpan.textContent = "Date must be between 2020-01-01 and 2025-09-01.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        // Add event listeners for input changes
+        startDateInput.addEventListener('change', validateDates);
+        endDateInput.addEventListener('change', validateDates);
+
+        // Add event listener to prevent form submission if validation fails
+        form.addEventListener('submit', function(e) {
+            if (!validateDates()) {
+                e.preventDefault();
+            }
+        });
     });
 </script>
 {% endblock %}
