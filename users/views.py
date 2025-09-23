@@ -25,6 +25,6 @@ def login_view(request):
     return render(request, "users/login.html", { "form": form })
 
 def logout_view(request):
-    if request.method == "POST":
+    if request.user.is_authenticated:
         logout(request)
         return redirect("homepage")          

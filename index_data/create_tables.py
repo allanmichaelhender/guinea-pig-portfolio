@@ -1,5 +1,12 @@
 import psycopg2
 from config import load_config
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+database_url = os.getenv("DATABASE_URL")
+
 
 def create_tables():
     """ Create tables in the PostgreSQL database"""
@@ -42,8 +49,7 @@ def create_tables():
         """
 )
     try:
-        config = load_config()
-        with psycopg2.connect(**config) as connection:
+        with psycopg2.connect(database_url) as connection:
             with connection.cursor() as cursor:
                 # execute the CREATE TABLE statement
                 for command in commands:

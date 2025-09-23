@@ -21,10 +21,8 @@
 
 
         {% if user.is_authenticated %}
-            <form class="logout" action="{% url 'users:logout' %}" method = "post">
-                {% csrf_token %}
-                <button class="logout-button" title="User Logout">Logout</button> 
-            </form>
+                <a href="{% url 'users:logout' %}" title = "User Login">Logout</a> 
+
         {% else %}
                 <a href="{% url 'users:register' %}" title = "New User">Create Account</a> |
                 <a href="{% url 'users:login' %}" title = "User Login">Login</a> 

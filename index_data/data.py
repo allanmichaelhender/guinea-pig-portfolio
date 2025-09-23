@@ -8,15 +8,22 @@ def get_jsonparsed_data(url):
 
 datefrom = "2024-01-01"
 dateto = "2025-01-01"
-apikey="xjDy6auzJiNBaXQjmERBIGb84lN93EsR"
+
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
+
 
 def create_url(symbol,datefrom,dateto,apikey):
     return "https://financialmodelingprep.com/stable/historical-price-eod/full?" + f"apikey={apikey}" + f"&from={datefrom}" + f"&to={dateto}" + f"&symbol={symbol}"
     
     
-FTSE_url = create_url('^FTSE',datefrom,dateto,apikey)
-SNP500_url = create_url('^GSPC',datefrom,dateto,apikey)
-NIKKEI225_url = create_url('^N225',datefrom,dateto,apikey)
+FTSE_url = create_url('^FTSE',datefrom,dateto,API_KEY)
+SNP500_url = create_url('^GSPC',datefrom,dateto,API_KEY)
+NIKKEI225_url = create_url('^N225',datefrom,dateto,API_KEY)
 
 
 FTSE_data_raw = get_jsonparsed_data(FTSE_url)
