@@ -11,7 +11,7 @@ database_url = os.getenv("DATABASE_URL")
 
 def insert_data(data,index):
     """ Insert multiple vendors into the vendors table  """
-    sql = f"INSERT INTO {index}_data(date,open,high,low,close,volume,change,changePercent) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)"
+    sql = f"INSERT INTO {index}_data(date,open,high,low,close,volume,change,changePercent) VALUES(%s,%s,%s,%s,%s,%s,%s,%s) ON CONFLICT (date) DO NOTHING"
     try:
         with  psycopg2.connect(database_url) as connection:
             with  connection.cursor() as cursor:
