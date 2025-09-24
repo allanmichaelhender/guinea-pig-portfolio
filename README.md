@@ -1,28 +1,13 @@
-# [Web App][(https://guinea-pig-portfolio.onrender.com/)]
+# [Web App](https://guinea-pig-portfolio.onrender.com/)
 ---
-Welcome to the code for 
+Welcome to the code for my portfolio simulator web app called Guinea Pig Portfolio
 
-The data comes from two sources:
-yahoo finance for the stocks data
-UK.gov for the renewables data: https://www.gov.uk/government/statistics/energy-trends-section-6-renewables
-- In particular the Renewable electricity capacity and generation spreadsheet
+This repository is aligned with Django's framework. 
 
-Within the Renewables_Data folder is the data from UK.gov, reformatted into csv files for analysis
+The Index data folds holds files resposible for importing data from https://site.financialmodelingprep.com/ and the associated API. The create data and insert data scripts lean on the PostgreSQL instance connected to Django and fill out the respective tables with data for use in the modelling or portfolios later on.
 
-There are two Jupyter notebook files:
-1. stocks analysis
-2. renewable energy generation
+The guinea_pig directory handles the base of the site and houses django settings. The user app/directory handles users and logging in. The portfolio tester directory/app models portfolios and stores/reads previously submitted portfolios.
 
-stocks analysis:
-Within this notebook we load in the stocks data from yahoo finance and analyse the data
+To clone this repository and run the code, you will need to obtain an API key from Financial Modeling Prep and set up a SQL (PostgreSQL external, SQLite locally, etc.) to house data and set up Django's back end.
 
-renewable energy generation:
-Using the aformentioned data, we clean and export the data for later use.
 
-The Exported_Data folder contains data exported from our notebook.
-
-Reports and Analysis:
-1. Investing in Renewables - Report PDF
-2. Data plots - POWER BI PDF
-
-Within these PDF's we explore the data and draw conclusions.
