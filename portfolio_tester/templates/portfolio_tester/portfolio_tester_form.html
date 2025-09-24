@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<div class="creator_container">
 <form method="post" id="portfolio_form">
     {% csrf_token %}
     {{ form.non_field_errors }}
@@ -167,4 +168,6 @@
         });
     });
 </script>
+
+</div>
 {% endblock %}
