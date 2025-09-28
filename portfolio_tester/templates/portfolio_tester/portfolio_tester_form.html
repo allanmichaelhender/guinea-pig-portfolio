@@ -3,81 +3,85 @@
 
 
 {% block title %}
-    Home
+    Portfolio Creator
 {% endblock %}
 
 {% block content %}
-<div class="creator_container">
+<h1>Create Portfolio</h1>
+
+<div class="creator_form_container">
 <form method="post" id="portfolio_form">
     {% csrf_token %}
-    {{ form.non_field_errors }}
-    <div>
-        {{ form.investment_frequency.errors }}
-        <p>Investment Frequency</p>
-        {{ form.investment_frequency }}
+    
+<div>
+    {{ form.investment_frequency.errors }}
+    <p class="form-label">Investment Frequency</p>
+    
+    <div class="radio-group-container">
+        {% for radio in form.investment_frequency %}
+            <div class="radio-option">
+                <label for="{{ radio.id_for_label }}" class="radio-label">
+                    {{ radio.tag }}
+                    <span class="radio-choice-text">{{ radio.choice_label }}</span>
+                </label>
+            </div>
+        {% endfor %}
     </div>
+</div>
 
     <br>
 
     <div>
         {{ form.investment_amount.errors}}
-        <p>Investment Amount (per day/month) </p>
-        £{{ form.investment_amount}}
+        <p class="form-label">Investment Amount (per day/month) </p>
+        £ {{ form.investment_amount}}
     </div>
 
     <br>
 
-    {% if form.non_field_errors %}
-        <div class="alert alert-danger">
-            {{ form.non_field_errors }}
-        </div>
-    {% endif %}
-
 
        <div>
         {{ form.start_date.errors }}
-        <p>Start Date</p>
+        <p class="form-label">Start Date</p>
         {{ form.start_date }}
         <span id="start-date-error" class="error-message"></span>
     </div>
 
     <div>
         {{ form.end_date.errors }}
-        <p>End Date</p>
+        <p class="form-label">End Date</p>
         {{ form.end_date }}
         <span id="end-date-error" class="error-message"></span>
     </div>
 
     <br>
 
-    <fieldset>
-        <legend>Index Weights (must add up to 1):</legend>
-        <div id="weight-error" style="color: white; margin-bottom: 10px;"></div>
 
-        <div>
-            {{ form.FTSE_weight.errors }}
-            <p>FTSE_weight</p>
-            {{ form.FTSE_weight}}
-        </div>
+    <div>
+        {{ form.FTSE_weight.errors }}
+        <p class="form-label">FTSE100 Weight</p>
+        {{ form.FTSE_weight}}
+    </div>
 
-        <div>
-            {{ form.SNP500_weight.errors}}
-            <p>SNP500_weight</p>
-            {{ form.SNP500_weight}}
-        </div>
+    <div>
+        {{ form.SNP500_weight.errors}}
+        <p class="form-label">S&P500 Weight</p>
+        {{ form.SNP500_weight}}
+    </div>
 
-        <div>
-            {{ form.NIKKEI225_weight.errors}}
-            <p>NIKKEI225_weight</p>
-            {{ form.NIKKEI225_weight}}
-        </div>
-    </fieldset>
+    <div>
+        {{ form.NIKKEI225_weight.errors}}
+        <p class="form-label">NIKKEI225 Weight</p>
+        {{ form.NIKKEI225_weight}}
+    </div>
+
+    {{ form.non_field_errors }}
 
     <br>
-
-    <button type="submit">Submit Portfolio</button>
+    <button class="submit-portfolio-button">Submit Portfolio</button>
 </form>
 </div>
-<script src="{% static 'js/tester_form.js' %}" ></script>
+{% comment %} <script src="{% static 'js/tester_form.js' %}" ></script> {% endcomment %}
+
 
 {% endblock %}
