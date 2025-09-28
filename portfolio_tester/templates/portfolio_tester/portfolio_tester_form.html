@@ -1,4 +1,6 @@
 {% extends 'layout.html' %}
+{% load static %}
+
 
 {% block title %}
     Home
@@ -75,99 +77,7 @@
 
     <button type="submit">Submit Portfolio</button>
 </form>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const weightInputs = document.querySelectorAll('.weight-input');
-        const form = document.getElementById('portfolio_form');
-        const errorDiv = document.getElementById('weight-error');
-
-        function validateWeights() {
-            let totalWeight = 0;
-            weightInputs.forEach(input => {
-                const value = parseFloat(input.value) || 0; // Use 0 for non-numeric or empty values
-                totalWeight += value;
-            });
-
-            // Using toFixed() to handle potential floating-point inaccuracies, then parseFloat()
-            const roundedTotal = parseFloat(totalWeight.toFixed(2));
-            
-            if (roundedTotal !== 1) {
-                errorDiv.textContent = `The weights must sum to 1. Current sum is ${roundedTotal}.`;
-                return false;
-            } else {
-                errorDiv.textContent = ''; // Clear the error message
-                return true;
-            }
-        }
-
-        // Add event listener to each weight input field
-        weightInputs.forEach(input => {
-            input.addEventListener('input', validateWeights);
-        });
-
-        // Add event listener to form submission to prevent if validation fails
-        form.addEventListener('submit', function(e) {
-            if (!validateWeights()) {
-                e.preventDefault(); // Stop the form from submitting
-            }
-        });
-
-        // Run validation on page load in case of pre-filled values
-        validateWeights();
-    });
-
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-        const startDateInput = document.getElementById('id_start_date');
-        const endDateInput = document.getElementById('id_end_date');
-        const startDateErrorSpan = document.getElementById('start-date-error');
-        const endDateErrorSpan = document.getElementById('end-date-error');
-        const form = document.getElementById('portfolio-form');
-
-        function validateDates() {
-            const startDate = new Date(startDateInput.value);
-            const endDate = new Date(endDateInput.value);
-            const minDate = new Date('2015-01-01');
-            const maxDate = new Date('2025-09-01');
-
-            let isValid = true;
-
-            // Clear previous errors
-            startDateErrorSpan.textContent = '';
-            endDateErrorSpan.textContent = '';
-
-            // Check if start date is after end date
-            if (startDateInput.value && endDateInput.value && startDate > endDate) {
-                startDateErrorSpan.textContent = "Start date cannot be after end date.";
-                isValid = false;
-            }
-
-            // Check if dates are within the valid range
-            if (startDateInput.value && (startDate < minDate || startDate > maxDate)) {
-                startDateErrorSpan.textContent = "Date must be between 2015-01-01 and 2025-09-01.";
-                isValid = false;
-            }
-            if (endDateInput.value && (endDate < minDate || endDate > maxDate)) {
-                endDateErrorSpan.textContent = "Date must be between 2015-01-01 and 2025-09-01.";
-                isValid = false;
-            }
-
-            return isValid;
-        }
-
-        // Add event listeners for input changes
-        startDateInput.addEventListener('change', validateDates);
-        endDateInput.addEventListener('change', validateDates);
-
-        // Add event listener to prevent form submission if validation fails
-        form.addEventListener('submit', function(e) {
-            if (!validateDates()) {
-                e.preventDefault();
-            }
-        });
-    });
-</script>
-
 </div>
+<script src="{% static 'js/tester_form.js' %}" ></script>
+
 {% endblock %}

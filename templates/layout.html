@@ -9,23 +9,24 @@
             Django App
         {% endblock%}
     </title>
-    <script src="{% static 'js/main.js' %}" defer></script>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
     <nav>
-        <a href="/" title = "Home">About</a> | 
-        <a href="/portfolio_tester/form" title = "Posts List">Portfolio Creator</a> |
-        <a title = "My Portfolios" href="{% url 'portfolio_tester:my_portfolios' %}">My Porfolios</a> |
+          <ul>
+            <li><a href="/" title = "About">About</a></li>
+            <li><a href="/portfolio_tester/form" title = "Portfolio Creator">Portfolio Creator</a></li>
+            <li><a title = "View My Portfolios" href="{% url 'portfolio_tester:my_portfolios' %}">My Porfolios</a></li>
 
 
-        {% if user.is_authenticated %}
-                <a href="{% url 'users:logout' %}" title = "User Login">Logout</a> 
+            {% if user.is_authenticated %}
+                    <li><a href="{% url 'users:logout' %}" title = "User Login">Logout</a></li>
 
-        {% else %}
-                <a href="{% url 'users:register' %}" title = "New User">Create Account</a> |
-                <a href="{% url 'users:login' %}" title = "User Login">Login</a> 
-        {% endif %}           
+            {% else %}
+                    <li><a href="{% url 'users:register' %}" title = "New User">Create Account</a></li>
+                    <li><a href="{% url 'users:login' %}" title = "User Login">Login</a></li>
+            {% endif %}
+          </ul>
     </nav>
         <main>
             {% block content %}
