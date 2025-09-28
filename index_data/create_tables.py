@@ -9,7 +9,6 @@ database_url = os.getenv("DATABASE_URL")
 
 
 def create_tables():
-    """ Create tables in the PostgreSQL database"""
     commands = (
         """
         CREATE TABLE FTSE_data (
@@ -51,7 +50,6 @@ def create_tables():
     try:
         with psycopg2.connect(database_url) as connection:
             with connection.cursor() as cursor:
-                # execute the CREATE TABLE statement
                 for command in commands:
                     cursor.execute(command)
     except (psycopg2.DatabaseError, Exception) as error:

@@ -17,21 +17,6 @@ import dj_database_url
 
 load_dotenv()
 
-database_url = os.getenv("DATABASE_URL")
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# --- Access your environment variables below this line ---
-
-# Access the database URL
-DATABASES = {
-        'default': dj_database_url.config(
-            default=database_url,
-            conn_max_age=600  # Optional: Keep connections alive for performance
-        )
-    }
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -96,6 +81,13 @@ WSGI_APPLICATION = 'guinea_pig.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 
+database_url = os.getenv("DATABASE_URL")
+
+DATABASES = {
+        'default': dj_database_url.config(
+            default=database_url
+        )
+    }
 
 
 # Password validation
@@ -134,18 +126,13 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-# Tell Django where the collected static files will be placed
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
-# Tell WhiteNoise to use its storage backend for compression and caching
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Optional: If you have static files outside of an app's static directory,
-# specify their location here.
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
 
 MEDIA_URL = 'media/'
 

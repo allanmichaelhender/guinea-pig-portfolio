@@ -36,15 +36,10 @@ class PortfolioForm(forms.ModelForm):
             min_date = datetime.date(2015, 1, 1)
             max_date = datetime.date(2025, 9, 1)
 
-            # First, check if both dates are present in the form data
             if start_date and end_date:
-                # Check if the start date is before the end date
                 if start_date > end_date:
-                    # Add an error to the form, but not to a specific field.
-                    # It will show up in `form.non_field_errors`.
                     raise ValidationError("Start date cannot be after end date.")
                 
-                # Check if both dates are within the required range
                 if not (min_date <= start_date <= max_date and min_date <= end_date <= max_date):
                     raise ValidationError(
                         f"Dates must be between {min_date.strftime('%Y-%m-%d')} and {max_date.strftime('%Y-%m-%d')}."

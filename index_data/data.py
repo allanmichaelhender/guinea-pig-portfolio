@@ -1,5 +1,8 @@
 from urllib.request import urlopen
 import json
+import os
+from dotenv import load_dotenv
+from datetime import date
 
 def get_jsonparsed_data(url):
     response = urlopen(url)
@@ -7,15 +10,13 @@ def get_jsonparsed_data(url):
     return json.loads(data)
 
 datefrom = "2015-01-01"
-dateto = "2025-09-01"
 
-import os
-from dotenv import load_dotenv
+today = date.today()
+dateto = today.isoformat()
 
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
-
 
 def create_url(symbol,datefrom,dateto,apikey):
     return "https://financialmodelingprep.com/stable/historical-price-eod/full?" + f"apikey={apikey}" + f"&from={datefrom}" + f"&to={dateto}" + f"&symbol={symbol}"

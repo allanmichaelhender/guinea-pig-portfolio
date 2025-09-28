@@ -65,7 +65,6 @@ def tester(request):
 
         elif PortfolioObject.investment_frequency == 'monthly':
             FTSE_monthly_queryset = FtseData.objects.annotate(
-    # Create partitions by year and month
             row_number=Window(
             expression=RowNumber(),
             partition_by=[ExtractYear('date'), ExtractMonth('date')],
@@ -74,7 +73,6 @@ def tester(request):
             FTSE_monthly_queryset = FTSE_monthly_queryset.filter(date__range=(start_date,end_date)).order_by('date')
 
             SNP500_monthly_queryset = Snp500Data.objects.annotate(
-    # Create partitions by year and month
             row_number=Window(
             expression=RowNumber(),
             partition_by=[ExtractYear('date'), ExtractMonth('date')],
@@ -83,7 +81,6 @@ def tester(request):
             SNP500_monthly_queryset = SNP500_monthly_queryset.filter(date__range=(start_date,end_date)).order_by('date')
 
             NIKKEI225_monthly_queryset = Nikkei225Data.objects.annotate(
-    # Create partitions by year and month
             row_number=Window(
             expression=RowNumber(),
             partition_by=[ExtractYear('date'), ExtractMonth('date')],
@@ -113,8 +110,6 @@ def tester(request):
             PortfolioObject.save()
 
             return redirect('portfolio_tester:my_portfolios')
-
-
 
 
 def my_portfolios(request):
